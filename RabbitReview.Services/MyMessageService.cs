@@ -3,10 +3,6 @@ using RabbitReview.Repositories;
 
 namespace RabbitReview.Services
 {
-    public interface IMyMessageService
-    {
-        Task SendMessage(MyMessage message);
-    }
 
     public class MyMessageService : IMyMessageService
     {
@@ -19,7 +15,7 @@ namespace RabbitReview.Services
 
         public async Task SendMessage(MyMessage message)
         {
-            await _messageRepository.SendMessage(message);
+            await _messageRepository.PublishMessage(message);
         }
     }
 }

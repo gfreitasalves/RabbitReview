@@ -2,23 +2,11 @@
 
 namespace RabbitReview.Repositories
 {
-    public interface IMyMessageRepository
+
+    public class MyMessageRepository : BaseRabbitMQRepository<MyMessage>, IMyMessageRepository
     {
-        Task SendMessage(MyMessage message);
-    }
-
-    public class MyMessageRepository : IMyMessageRepository
-    {
-        public IRabbitMQConnection _rabbitMQConnection { get; set; }
-
-        public MyMessageRepository(IRabbitMQConnection rabbitMQConnection)
+        public MyMessageRepository():base("rabbitMessageQueue")
         {
-                _rabbitMQConnection = rabbitMQConnection;
-        }
-
-        public async Task SendMessage(MyMessage message)
-        {
-            await _rabbitMQConnection.PublishMessage(message, "rabbitMessageQueue");           
         }
     }
 }

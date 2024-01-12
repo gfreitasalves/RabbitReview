@@ -11,7 +11,6 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IMyMessageService, MyMessageService>();
 builder.Services.AddTransient<IMyMessageRepository, MyMessageRepository>();
-builder.Services.AddTransient<IRabbitMQConnection, RabbitMQConnection>();
 
 var app = builder.Build();
 

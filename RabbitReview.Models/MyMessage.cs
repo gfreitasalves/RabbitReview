@@ -1,8 +1,8 @@
 ﻿namespace RabbitReview.Models
 {
-    public class Message
+    public class MyMessage
     {
-        public Message(Guid id, string title, string description)
+        public MyMessage(Guid id, string title, string description)
         {
             Id = id;
             Title = title;

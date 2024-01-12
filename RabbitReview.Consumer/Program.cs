@@ -31,7 +31,7 @@ using (var channel = connection.CreateModel())
         var body = ea.Body.ToArray();
         var json = Encoding.UTF8.GetString(body);
 
-        Message message = JsonSerializer.Deserialize<Message>(json);
+        MyMessage message = JsonSerializer.Deserialize<MyMessage>(json);
 
         Console.WriteLine($"{message.Id} = Titulo: {message.Title}; Texto={message.Description}");
     };

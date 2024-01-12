@@ -9,8 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddTransient<IMessageService, MessageService>();
-builder.Services.AddTransient<IMessageRepository, MessageRepository>();
+builder.Services.AddTransient<IMyMessageService, MyMessageService>();
+builder.Services.AddTransient<IMyMessageRepository, MyMessageRepository>();
+builder.Services.AddTransient<IRabbitMQConnection, RabbitMQConnection>();
 
 var app = builder.Build();
 
@@ -21,11 +22,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapPost("/publishMessage", async (Message message, IMessageService messageService) =>
+app.MapPost("/publishMyMessage", async (MyMessage message, IMyMessageService messageService) =>
 {
     await messageService.SendMessage(message);
 })
-.WithName("PublishMessage");
+.WithName("PublishMyMessage");
 
 app.Run();
 

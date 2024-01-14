@@ -1,6 +1,8 @@
 using RabbitReview.Models;
 using RabbitReview.Repositories;
+using RabbitReview.Repositories.Interfaces;
 using RabbitReview.Services;
+using RabbitReview.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IMyMessageService, MyMessageService>();
 builder.Services.AddTransient<IMyMessageRepository, MyMessageRepository>();
+builder.Services.AddTransient<IMyQueueItemReaderService, MyQueueItemReaderService>();
 
 var app = builder.Build();
 
@@ -26,6 +29,14 @@ app.MapPost("/publishMyMessage", async (MyMessage message, IMyMessageService mes
     await messageService.SendMessage(message);
 })
 .WithName("PublishMyMessage");
+
+app.MapPost("/publishMyMessageExchange/{exchange}", async (MyMessage message, string exchange, IMyMessageService messageService) =>
+{
+    await messageService.SendMessage(message,exchange);
+})
+.WithName("PublishMyMessageExchange");
+
+
 
 app.Run();
 

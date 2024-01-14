@@ -4,7 +4,7 @@ using System.Text;
 using System.Text.Json;
 
 namespace RabbitReview.Repositories
-{   
+{
     public abstract class BaseRabbitMQRepository<T> : IDisposable
     {
 
@@ -40,12 +40,17 @@ namespace RabbitReview.Repositories
             _channel?.Dispose();
         }
 
-        public Task PublishMessage(T message)
+        public async Task PublishMessage(T message)
+        {
+            await PublishMessage(message, string.Empty);
+        }
+
+        public Task PublishMessage(T message, string exchange)
         {
             string json = JsonSerializer.Serialize(message);
             var body = Encoding.UTF8.GetBytes(json);
 
-            _channel.BasicPublish(exchange: "",
+            _channel.BasicPublish(exchange: exchange,
                                  routingKey: _queue,
                                  basicProperties: null,
                                  body: body);
@@ -53,12 +58,17 @@ namespace RabbitReview.Repositories
             return Task.CompletedTask;
         }
 
-        public Task ReadMessages(IQueueConsumer queueItemReader)
+        public async Task SubscribeMessages(Action<byte[]> queueItemReadAction)
+        {
+            await SubscribeMessages(queueItemReadAction, string.Empty);
+        }
+
+        public Task SubscribeMessages(Action<byte[]> queueItemReadAction, string exchange)
         {
             var consumer = new EventingBasicConsumer(_channel);
             consumer.Received += (model, ea) =>
             {
-                queueItemReader.ReadItem(ea.Body.ToArray());
+                queueItemReadAction(ea.Body.ToArray());
 
             };
             _channel.BasicConsume(queue: _queue,

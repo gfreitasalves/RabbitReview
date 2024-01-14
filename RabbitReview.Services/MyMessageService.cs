@@ -1,5 +1,6 @@
 ﻿using RabbitReview.Models;
-using RabbitReview.Repositories;
+using RabbitReview.Repositories.Interfaces;
+using RabbitReview.Services.Interfaces;
 
 namespace RabbitReview.Services
 {
@@ -16,6 +17,11 @@ namespace RabbitReview.Services
         public async Task SendMessage(MyMessage message)
         {
             await _messageRepository.PublishMessage(message);
+        }
+
+        public async Task SendMessage(MyMessage message, string exchange)
+        {
+            await _messageRepository.PublishMessage(message,exchange);
         }
     }
 }

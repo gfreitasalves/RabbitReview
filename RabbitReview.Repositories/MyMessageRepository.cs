@@ -1,4 +1,5 @@
 ﻿using RabbitReview.Models;
+using RabbitReview.Repositories.Interfaces;
 
 namespace RabbitReview.Repositories
 {

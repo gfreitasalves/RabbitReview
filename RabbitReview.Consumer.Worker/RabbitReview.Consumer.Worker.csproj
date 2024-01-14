@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-RabbitReview.Consumer.Worker-212ffe0e-ec6a-4c05-bdbd-c3ad2d6885e4</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RabbitReview.Models\RabbitReview.Models.csproj" />
+    <ProjectReference Include="..\RabbitReview.Repositories\RabbitReview.Repositories.csproj" />
+    <ProjectReference Include="..\RabbitReview.Services\RabbitReview.Services.csproj" />
+  </ItemGroup>
+</Project>

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitReview.Repositories",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitReview.Api", "RabbitReview.Api\RabbitReview.Api.csproj", "{C21E2994-977F-488E-92B9-5EA508E18A78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitReview.Consumer.Worker", "RabbitReview.Consumer.Worker\RabbitReview.Consumer.Worker.csproj", "{A2C736B1-36AB-4C57-905F-5CB62B84266D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{C21E2994-977F-488E-92B9-5EA508E18A78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C21E2994-977F-488E-92B9-5EA508E18A78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C21E2994-977F-488E-92B9-5EA508E18A78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2C736B1-36AB-4C57-905F-5CB62B84266D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2C736B1-36AB-4C57-905F-5CB62B84266D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2C736B1-36AB-4C57-905F-5CB62B84266D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2C736B1-36AB-4C57-905F-5CB62B84266D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
